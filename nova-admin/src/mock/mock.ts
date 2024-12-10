@@ -1,0 +1,152 @@
+import Mock from 'mockjs'
+
+Mock.mock('/api/requirements', 'post', {
+  code: 200,
+  data: {
+    requirementsA: [
+      {
+        id: 'A1',
+        parentId: null,
+        displayId: 'A1.0-1.0-1',
+        name: '需求A-1',
+        status: '已完成',
+        dependencies: [
+          { id: 'B1', related: true },
+          { id: 'B2', related: false },
+        ],
+      },
+      {
+        id: 'A1-1',
+        parentId: 'A1',
+        displayId: 'A1.1-1.0-1',
+        name: '需求A-1-子1',
+        status: '开发中',
+        dependencies: [
+          { id: 'B2', related: true },
+        ],
+      },
+      {
+        id: 'A1-2',
+        parentId: 'A1',
+        displayId: 'A1.1-1.0-2',
+        name: '需求A-1-子2',
+        status: '待实现',
+        dependencies: [
+          { id: 'B3', related: true },
+        ],
+      },
+      {
+        id: 'A2',
+        parentId: null,
+        displayId: 'A1.0-1.0-2',
+        name: '需求A-2',
+        status: '开发中',
+        dependencies: [
+          { id: 'B2', related: true },
+        ],
+      },
+      {
+        id: 'A2-1',
+        parentId: 'A2',
+        displayId: 'A1.1-1.0-3',
+        name: '需求A-2-子1',
+        status: '已完成',
+        dependencies: [
+          { id: 'B1', related: true },
+          { id: 'B3', related: false },
+        ],
+      },
+      {
+        id: 'A3',
+        parentId: null,
+        displayId: 'A1.0-1.0-3',
+        name: '需求A-3',
+        status: '待实现',
+        dependencies: [],
+      },
+      {
+        id: 'A3',
+        parentId: null,
+        displayId: 'A1.0-1.0-3',
+        name: '需求A-3',
+        status: '待实现',
+        dependencies: [],
+      },
+      {
+        id: 'A3',
+        parentId: null,
+        displayId: 'A1.0-1.0-3',
+        name: '需求A-3',
+        status: '待实现',
+        dependencies: [],
+      },
+      {
+        id: 'A3',
+        parentId: null,
+        displayId: 'A1.0-1.0-3',
+        name: '需求A-3',
+        status: '待实现',
+        dependencies: [],
+      },
+      {
+        id: 'A3',
+        parentId: null,
+        displayId: 'A1.0-1.0-3',
+        name: '需求A-3',
+        status: '待实现',
+        dependencies: [],
+      },
+
+    ],
+    requirementsB: [
+      {
+        id: 'B1',
+        parentId: null,
+        displayId: 'B1.0-1.0-1',
+        name: '需求B-1',
+        status: '已完成',
+        dependencies: [],
+      },
+      {
+        id: 'B1-1',
+        parentId: 'B1',
+        displayId: 'B1.1-1.0-1',
+        name: '需求B-1-子1',
+        status: '开发中',
+        dependencies: [],
+      },
+      {
+        id: 'B2',
+        parentId: null,
+        displayId: 'B1.0-1.0-2',
+        name: '需求B-2',
+        status: '开发中',
+        dependencies: [],
+      },
+      {
+        id: 'B2-1',
+        parentId: 'B2',
+        displayId: 'B1.1-1.0-2',
+        name: '需求B-2-子1',
+        status: '待实现',
+        dependencies: [],
+      },
+      {
+        id: 'B3',
+        parentId: null,
+        displayId: 'B1.0-1.0-3',
+        name: '需求B-3',
+        status: '待实现',
+        dependencies: [],
+      },
+      {
+        id: 'B3-1',
+        parentId: 'B3',
+        displayId: 'B1.1-1.0-3',
+        name: '需求B-3-子1',
+        status: '已完成',
+        dependencies: [],
+      },
+    ],
+  },
+})
