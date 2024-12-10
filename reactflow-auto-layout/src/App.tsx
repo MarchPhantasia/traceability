@@ -37,8 +37,8 @@ const EditWorkFlow = () => {
       const { requirements } = res2.data;
       // 从 /api/traceModel 接口获取数据
       const data = { requirements: requirements }
-      const res = await axios.post("/api/traceModel", data);
-      // const res = await axios.post("http://localhost:5000/traceModel");
+      // const res = await axios.post("/api/traceModel", data);
+      const res = await axios.post("http://169.254.88.200:5000/traceModel", data, { timeout: 30000 });
       const { traces } = res.data;
       
 
