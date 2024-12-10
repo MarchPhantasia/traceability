@@ -59,17 +59,18 @@ const reverseSourceHandles = Object.entries({
   } as any
 );
 
-export const ControlPanel = (props: { layoutReactflow: any }) => {
-  const { layoutReactflow } = props;
-
+export const ControlPanel = (props: { layoutReactflow: any, transWorkflow: any}) => {
+  const { layoutReactflow, transWorkflow } = props;
+  const recvWorkflow = JSON.stringify(transWorkflow, null, 2); // 将 JSON 对象转换为字符串格式
+  // console.log(recvWorkflo)
   const [state, setState] = useControls(() => {
     return {
-      workflow: {
-        order: 1,
-        label: "Workflow",
-        rows: 3,
-        value: workflowInputHint,
-      },
+      // workflow: {
+      //   order: 1,
+      //   label: "Workflow",
+      //   rows: 3,
+      //   value: workflowInputHint,
+      // },
       algorithm: {
         order: 2,
         label: "Algorithms",
@@ -96,7 +97,7 @@ export const ControlPanel = (props: { layoutReactflow: any }) => {
         label: "Layout",
         ...button((get) => {
           layoutReactflow({
-            workflow: get("workflow"),
+            // workflow: get("workflow"),
             algorithm: get("algorithm"),
             direction: get("direction"),
             spacing: get("spacing"),

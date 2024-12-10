@@ -10,13 +10,14 @@ export const kAllMarkerColors = [
 
 export const ColorfulMarkerDefinitions = () => {
   return (
-    <svg style={{ position: "absolute", top: 0, left: 0 }}>
-      <defs>
-        {kAllMarkerColors.map((color) => (
-          <Marker key={color} id={color.replace("#", "")} color={color} />
-        ))}
-      </defs>
-    </svg>
+    // <svg style={{ position: "absolute", top: 0, left: 0 }}>
+    //   <defs>
+    //     {kAllMarkerColors.map((color) => (
+    //       <Marker key={color} id={color.replace("#", "")} color={color} />
+    //     ))}
+    //   </defs>
+    // </svg>
+    <div></div>
   );
 };
 

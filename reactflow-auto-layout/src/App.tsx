@@ -1,6 +1,6 @@
 import "reactflow/dist/style.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -26,46 +26,22 @@ import { useAutoLayout } from "./layout/useAutoLayout";
 const EditWorkFlow = () => {
   const [nodes, _setNodes, onNodesChange] = useNodesState([]);
   const [edges, _setEdges, onEdgesChange] = useEdgesState([]);
-
+  const [requirementsAll, setRequirementsAll] = useState<any>([]);
   const { layout, layouting } = useAutoLayout();
-
-  // const fetchData = async () => {
-  //   try {
-  //     // 请求节点和边数据
-  //     const [nodesResponse, edgesResponse] = await Promise.all([
-  //       axios.post("/api/nodes"),
-  //       axios.post("/api/edges"),
-  //     ]);
-  //     // TODO: 手动指定节点的Type为base
-  //     /**
-  //      *  {
-  //           id: "1",
-  //           type: "base",
-  //           name: "Support for Multi-Task Payload Operations",
-  //           content: "The Payload Subsystem shall be capable of running multiple payload tasks simultaneously, including but not limited to image acquisition, communication signal processing, and scientific experiments, while ensuring the independence and data integrity of each task."
-  //         },
-  //      */
-  //     const { nodes: nodes } = nodesResponse.data;
-  //     const { edges: edges } = edgesResponse.data;
-  //     console.log(nodes, edges)
-
-  //     const res = await axios.post("/api/traceModel")
-  //     console.log(res.data)
-      
-  //     return { nodes, edges };
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //     alert("Failed to fetch workflow data.");
-  //     return { nodes: [], edges: [] }; // 返回空数据以避免错误
-  //   }
-  // }
 
   const fetchData = async () => {
     try {
+
+      const res2 = await axios.post("/api/requirements");
+      // TODO: 对requirements内容的修改
+      const { requirements } = res2.data;
       // 从 /api/traceModel 接口获取数据
-      const res = await axios.post("/api/traceModel");
-      const { requirements, traces } = res.data;
-  
+      const data = { requirements: requirements }
+      const res = await axios.post("/api/traceModel", data);
+      // const res = await axios.post("http://localhost:5000/traceModel");
+      const { traces } = res.data;
+      
+
       // 为每个 requirement 节点添加 type 'base'
       const nodes = requirements.map((node: any) => ({
         ...node,
@@ -143,6 +119,7 @@ const EditWorkFlow = () => {
       return;
     }
     const defaultWorkflow = await fetchData()
+    setTransWorkflow(defaultWorkflow)
     const workflow = workflow2reactflow(defaultWorkflow);
     await layout({ ...workflow, ...props });
   };
@@ -155,10 +132,12 @@ const EditWorkFlow = () => {
     reverseSourceHandles: false,
   }
 
+  const [transWorkflow, setTransWorkflow] = useState<any>()
+
   useEffect(() => {
     const initailize = async () => {
-      
       const defaultWorkflow = await fetchData()
+      setTransWorkflow(defaultWorkflow)
       // console.log("defaultWorkflow", defaultWorkflow)
       const { nodes, edges } = workflow2reactflow(defaultWorkflow as any);
       // const reponse = axios.post("/api/nodes");
@@ -196,7 +175,7 @@ const EditWorkFlow = () => {
           maskStrokeColor="black"
           maskStrokeWidth={10}
         />
-        <ControlPanel layoutReactflow={layoutReactflow} />
+        <ControlPanel layoutReactflow={layoutReactflow} transWorkflow={transWorkflow}/>
       </ReactFlow>
     </div>
   );

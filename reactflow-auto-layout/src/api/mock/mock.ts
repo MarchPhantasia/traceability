@@ -4,33 +4,6 @@ import Mock from "mockjs";
 Mock.mock("/api/traceModel", "post", {
   code: 200,
   message: "success",
-  requirements: [
-    {
-      id: "1",
-      name: "Support for Multi-Task Payload Operations",
-      content: "The Payload Subsystem shall be capable of running multiple payload tasks simultaneously, including but not limited to image acquisition, communication signal processing, and scientific experiments, while ensuring the independence and data integrity of each task."
-    },
-    {
-      id: "2",
-      name: "Real-Time Bidirectional Communication",
-      content: "The Communications Subsystem shall support real-time bidirectional communication with ground stations, with a data latency of no more than 500ms, and shall perform automatic retransmission in the event of signal interference."
-    },
-    {
-      id: "3",
-      name: "Automatic Fault Detection and Switching",
-      content: "The Avionics Subsystem shall detect critical faults in key systems and switch to backup systems automatically within 2 seconds."
-    },
-    {
-      id: "4",
-      name: "High-Precision Attitude Control",
-      content: "The GN&C Subsystem shall achieve high-precision attitude control with an attitude control error not exceeding 0.1 degrees and a response time of no more than 5 seconds."
-    },
-    {
-      id: "5",
-      name: "Controllable Thrust Adjustment Range",
-      content: "The Propulsion Subsystem shall support a continuous controllable thrust adjustment range of 0-500N to accommodate various orbital corrections and attitude adjustments."
-    },
-  ],
   traces: [
     [
       "Support for Multi-Task Payload Operations",
@@ -60,7 +33,37 @@ Mock.mock("/api/traceModel", "post", {
 });
 // traces 的前面一个部分是要求的name，后面是对应的模型的name
 
-
+Mock.mock("/api/requirements", "post", {
+  code: 200,
+  message: "success",
+  requirements: [
+    {
+      id: "1",
+      name: "Support for Multi-Task Payload Operations",
+      content: "The Payload Subsystem shall be capable of running multiple payload tasks simultaneously, including but not limited to image acquisition, communication signal processing, and scientific experiments, while ensuring the independence and data integrity of each task."
+    },
+    {
+      id: "2",
+      name: "Real-Time Bidirectional Communication",
+      content: "The Communications Subsystem shall support real-time bidirectional communication with ground stations, with a data latency of no more than 500ms, and shall perform automatic retransmission in the event of signal interference."
+    },
+    {
+      id: "3",
+      name: "Automatic Fault Detection and Switching",
+      content: "The Avionics Subsystem shall detect critical faults in key systems and switch to backup systems automatically within 2 seconds."
+    },
+    {
+      id: "4",
+      name: "High-Precision Attitude Control",
+      content: "The GN&C Subsystem shall achieve high-precision attitude control with an attitude control error not exceeding 0.1 degrees and a response time of no more than 5 seconds."
+    },
+    {
+      id: "5",
+      name: "Controllable Thrust Adjustment Range",
+      content: "The Propulsion Subsystem shall support a continuous controllable thrust adjustment range of 0-500N to accommodate various orbital corrections and attitude adjustments."
+    },
+  ],
+})
 
 
 // console.log("Mocking API...");
